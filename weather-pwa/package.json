@@ -1,22 +1,24 @@
 {
   "name": "weather-pwa",
-  "version": "2.0.0",
-  "description": "A Simple PWA Application using Weather API.",
+  "version": "1.0.0",
+  "description": "A simple pwa that uses weather API.",
+  "homepage": "https://github.com/praveen-me/PWA",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "express-http-to-https": "^1.1.4",
-    "node-fetch": "^2.3.0"
+    "node-fetch": "^2.3.0",
+    "nodemon": "^1.19.1"
   },
   "engines": {
-    "node": "8.x"
+    "node": "11.x"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/praveen-me/PWA.git "
+    "url": "https://github.com/praveen-me/PWA.git"
   },
   "bugs": {
     "url": "https://github.com/praveen-me/PWA/issues"
