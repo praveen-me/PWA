@@ -29,9 +29,18 @@
 
   <!-- CODELAB: Add link rel manifest -->
   <link rel="manifest" href="/manifest.json">
+  
   <!-- CODELAB: Add iOS meta tags and icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Weather App">
+  <link rel="apple-touch-icon" href="/images/icons/icon-152X152.png">
+
   <!-- CODELAB: Add description here -->
+  <meta name="description" content="A simple weather app">
+
   <!-- CODELAB: Add meta theme-color -->
+  <meta name="theme-color" content="#2F3BA2">
 
 </head>
 <body>
@@ -205,6 +214,14 @@
   <!-- CODELAB: Add the install script here -->
   <script>
     // CODELAB: Register service worker.
+    if( 'serviceWorker' in navigator ) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((reg) => {
+            console.log('Service Worker registered', reg);
+          })
+      })
+    }
   </script>
 
 </body>
