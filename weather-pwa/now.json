@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "weather-app",
+  "builds": [
+    { "src": "public/**", "use": "@now/static" },
+    { "src": "server.js", "use": "@now/node" }
+  ],
+  "routes": [{ "src": "/", "dest": "public/**" }]
+}
