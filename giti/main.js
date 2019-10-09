@@ -35,7 +35,6 @@ const displayData = data => `
 `;
 
 const getUserData = async event => {
-  console.log("here");
   event.preventDefault();
   root.innerHTML = "";
   const userNameValue = userName.value;
