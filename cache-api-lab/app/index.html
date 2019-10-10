@@ -15,57 +15,67 @@ limitations under the License.
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Set character encoding -->
-  <meta charset="utf-8">
-  <!-- Set the viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <!-- Set title -->
-  <title>Photo blog</title>
-  <!-- Request styles -->
-  <link rel="stylesheet" href="/style/main.css" />
-</head>
-<body>
-  <header>
-    <h1>Photo blog</h1>
-  </header>
-  <main>
-    <div class="img-container">
-      <!-- image is CC0 - no attribution required https://unsplash.com/photos/w9tHZ5fi3e4 -->
-      <img src="/images/still_life_medium.jpg" alt="Kettle, cup and other objects on a cupboard">
-    </div>
-    <h2>Welcome</h2>
-    <p>
-      I love cheese, especially manchego swiss. ☺ Fromage queso jarlsberg cheesy
-      feet emmental cottage cheese camembert de normandie bocconcini. Cottage cheese
-      everyone loves cauliflower cheese rubber cheese squirty cheese halloumi cow
-      fondue. Bocconcini cheese and biscuits everyone loves fondue red leicester
-      st. agur blue cheese rubber cheese ricotta. Cheesy grin mozzarella.
-    </p>
-    <ul>
-      <li><a href="/pages/post1.html">Horses in a field</a></li>
-      <li><a href="/pages/post2.html">Old voltmeter</a></li>
-      <li><a href="/pages/post3.html">Geese in the sky</a></li>
-      <li><a href="/non-existent.html">Non-existent file</a></li>
-    </ul>
-  </main>
-  <footer>
-    <a href="#">Twitter</a>
-    <a href="#">Facebook</a>
-    <a href="#">Google+</a>
-  </footer>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-        .then(swReg => {
-          console.log('Service Worker is registered', swReg);
-        })
-        .catch(err => {
-          console.error('Service Worker Error', err);
+  <head>
+    <!-- Set character encoding -->
+    <meta charset="utf-8" />
+    <!-- Set the viewport -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <!-- Set title -->
+    <title>Photo blog</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#2E3AA1" />
+    <!-- Request styles -->
+    <link rel="stylesheet" href="/style/main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Photo blog</h1>
+    </header>
+    <main>
+      <div class="img-container">
+        <!-- image is CC0 - no attribution required https://unsplash.com/photos/w9tHZ5fi3e4 -->
+        <img
+          src="/images/still_life_medium.jpg"
+          alt="Kettle, cup and other objects on a cupboard"
+        />
+      </div>
+      <h2>Welcome</h2>
+      <p>
+        I love cheese, especially manchego swiss. ☺ Fromage queso jarlsberg
+        cheesy feet emmental cottage cheese camembert de normandie bocconcini.
+        Cottage cheese everyone loves cauliflower cheese rubber cheese squirty
+        cheese halloumi cow fondue. Bocconcini cheese and biscuits everyone
+        loves fondue red leicester st. agur blue cheese rubber cheese ricotta.
+        Cheesy grin mozzarella.
+      </p>
+      <ul>
+        <li><a href="/pages/post1.html">Horses in a field</a></li>
+        <li><a href="/pages/post2.html">Old voltmeter</a></li>
+        <li><a href="/pages/post3.html">Geese in the sky</a></li>
+        <li><a href="/non-existent.html">Non-existent file</a></li>
+      </ul>
+    </main>
+    <footer>
+      <a href="#">Twitter</a>
+      <a href="#">Facebook</a>
+      <a href="#">Google+</a>
+    </footer>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("sw.js")
+            .then(swReg => {
+              console.log("Service Worker is registered", swReg);
+            })
+            .catch(err => {
+              console.error("Service Worker Error", err);
+            });
         });
-      });
-    }
-  </script>
-</body>
+      }
+    </script>
+  </body>
 </html>
