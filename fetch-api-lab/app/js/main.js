@@ -15,11 +15,35 @@ limitations under the License.
 */
 
 // helper functions ----------
+function showText(responseAsText) {
+  console;
+  const message = document.getElementById("message");
+  message.textContent = responseAsText;
+}
+
+function responseAsText(response) {
+  const log = response.json();
+  return log;
+}
+
+function showImage(responseAsBlob) {
+  const container = document.getElementById("img-container");
+  const imgElm = document.createElement("img");
+  container.appendChild(imgElm);
+  const imageURL = URL.createObjectURL(responseAsBlob);
+  imgElm.src = imageURL;
+}
+
+function readResponseAsBlob(response) {
+  return response.blob();
+}
 
 function validateResult(response) {
   if (!response.ok) {
     throw Error(response.statusText);
   }
+  var myHeaders = new Headers();
+  console.log(myHeaders.get("Content-Length"));
   return response;
 }
 
@@ -52,6 +76,11 @@ jsonButton.addEventListener("click", fetchJSON);
 
 function fetchImage() {
   // TODO
+  fetch("examples/fetching.jpg")
+    .then(validateResult)
+    .then(readResponseAsBlob)
+    .then(showImage)
+    .catch(logError);
 }
 const imgButton = document.getElementById("img-btn");
 imgButton.addEventListener("click", fetchImage);
@@ -60,6 +89,11 @@ imgButton.addEventListener("click", fetchImage);
 
 function fetchText() {
   // TODO`
+  fetch("/examples/words.txt")
+    .then(validateResult)
+    .then(responseAsText)
+    .then(showText)
+    .catch(logError);
 }
 const textButton = document.getElementById("text-btn");
 textButton.addEventListener("click", fetchText);
@@ -68,6 +102,13 @@ textButton.addEventListener("click", fetchText);
 
 function headRequest() {
   // TODO
+  fetch("/examples/words.txt", {
+    method: "HEAD"
+  })
+    .then(validateResult)
+    .then(responseAsText)
+    .then(showText)
+    .catch(logError);
 }
 const headButton = document.getElementById("head-btn");
 headButton.addEventListener("click", headRequest);
@@ -77,6 +118,14 @@ headButton.addEventListener("click", headRequest);
 /* NOTE: Never send unencrypted user credentials in production! */
 function postRequest() {
   // TODO
+  fetch("http://localhost:5000/", {
+    method: "POST",
+    body: "name=david&message=hello"
+  })
+    .then(validateResult)
+    .then(responseAsText)
+    .then(showText)
+    .catch(logError);
 }
 const postButton = document.getElementById("post-btn");
 postButton.addEventListener("click", postRequest);
