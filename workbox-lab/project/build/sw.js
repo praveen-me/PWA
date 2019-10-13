@@ -32,7 +32,7 @@ if (workbox) {
 ]);
 
   workbox.routing.registerRoute(
-    /(.*)articles(.*)\.(?:jpg|png|gif)/,
+    /images(.*)\.(?:jpg|png|gif)/,
     workbox.strategies.cacheFirst({
       cacheName: "images-cache",
       plugins: [
@@ -45,7 +45,7 @@ if (workbox) {
   );
 
   workbox.routing.registerRoute(
-    /\images\/icon\/*/,
+    /images\/icon\/*/,
     workbox.strategies.staleWhileRevalidate({
       cacheName: "icon-cache",
       plugins: [
@@ -57,6 +57,15 @@ if (workbox) {
     })
   );
 
+  const renderValidResponse = response => {
+    if (!response) {
+      return caches.match("pages/offline.html");
+    } else if (response.status === 404) {
+      return caches.match("pages/404.html");
+    }
+    return response;
+  };
+
   const articleHandler = workbox.strategies.networkFirst({
     cacheName: "articles-cache",
     plugins: [
@@ -67,14 +76,20 @@ if (workbox) {
   });
 
   workbox.routing.registerRoute(/(.*)article(.*)\.html/, args =>
-    articleHandler.handle(args).then(response => {
-      if (!response) {
-        return caches.match("pages/offline.html");
-      } else if (response.status === 404) {
-        return caches.match("pages/404.html");
-      }
-      return response;
-    })
+    articleHandler.handle(args).then(response => renderValidResponse(response))
+  );
+
+  const postHandler = workbox.strategies.networkFirst({
+    cacheName: "posts-cache",
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxEntries: 50
+      })
+    ]
+  });
+
+  workbox.routing.registerRoute(/(.*)post(.*)\.html/, args =>
+    postHandler.handle(args).then(response => renderValidResponse(response))
   );
 } else {
   console.log(`Boo! Workbox didn't load 😬`);
