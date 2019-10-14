@@ -1,12 +1,11 @@
-console.log("Service Worker Loaded");
+console.log("Service Worker Loaded...");
 
-self.addEventListener("push", event => {
-  const data = event.data.json();
+self.addEventListener("push", e => {
+  const data = e.data.json();
 
-  console.log("Push received...");
-
-  self.registration.showNotification({
-    body: "This is a push notification",
+  console.log("Push Recieved...");
+  self.registration.showNotification(data.title, {
+    body: "A sample push notification",
     icon: "https://image.flaticon.com/icons/svg/145/145859.svg"
   });
 });
