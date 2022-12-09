@@ -88,7 +88,7 @@
     "cors": "2.8.5",
     "debug": "4.1.1",
     "devcert-with-localhost": "0.3.3",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "idb": "3.0.2",
     "moment": "2.24.0",
     "sequelize": "4.43.0",
